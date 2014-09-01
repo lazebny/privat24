@@ -1,7 +1,7 @@
 require 'digest/sha1'
 require 'base64'
 
-module Liqpay
+module Privat24
   class BaseOperation
     attr_accessor :public_key, :private_key
 
