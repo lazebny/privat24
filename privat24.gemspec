@@ -16,6 +16,14 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_development_dependency 'rake'
+  s.add_development_dependency 'bundler', ['>= 1.0.0']
+  s.add_development_dependency 'rake', ['>= 0']
+  # s.add_development_dependency 'tzinfo', ['>= 0']
+  s.add_development_dependency 'rspec', ['>= 0']
+  # s.add_development_dependency 'rr', ['>= 0']
+  s.add_development_dependency 'capybara', ['>= 1.0']
+  s.add_development_dependency 'database_cleaner', ['~> 1.2.0']
+  s.add_development_dependency 'pry'
+  # s.add_development_dependency 'rdoc', ['>= 0']
   # s.add_development_dependency "sqlite3"
 end

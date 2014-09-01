@@ -1,22 +1,22 @@
-module Private24
-  module Private24Helper
-    # Displays a form to send a payment request to LiqPay
+module Privat24
+  module Privat24Helper
+    # Displays a form to send a payment request to Privat24
     #
     # You can either pass in a block, that SHOULD render a submit button (or not, if you plan to submit the form otherwise), or
     # let the helper create a simple submit button for you.
     #
-    # liqpay_request - an instance of Liqpay::Request
+    # privat24_request - an instance of Privat24::Request
     # options - currently accepts two options
-    #   id - the ID of the form being created (`liqpay_form` by default)
-    #   title - text on the submit button (`Pay with LiqPay` by default); not used if you pass in a block
-    def liqpay_button(liqpay_request, options={}, &block)
-      id = options.fetch(:id, 'liqpay_form')
-      title = options.fetch(:title, 'Pay with LiqPAY')
-      content_tag(:form, :id => id, :action => Private24::LIQPAY_ENDPOINT_URL, :method => :post) do
-        result = liqpay_request.form_fields.map{|name, value|
+    #   id - the ID of the form being created (`privat24_form` by default)
+    #   title - text on the submit button (`Pay with Privat24` by default); not used if you pass in a block
+    def privat24_button(privat24_request, options={}, &block)
+      id = options.fetch(:id, 'privat24_form')
+      title = options.fetch(:title, 'Pay with Privat24')
+      content_tag(:form, id: id, action: Private24::PRIVAT24_URL, method: :post) do
+        result = privat24_request.form_fields.map{|name, value|
           hidden_field_tag(name, value)
         }.join("\n").html_safe
-        
+
         if block_given?
           result += yield
         else

@@ -1,5 +1,5 @@
 require 'base64'
-require 'private24/base_operation'
+require 'privat24/base_operation'
 
 module Privat24
   class Request < BaseOperation
@@ -9,7 +9,7 @@ module Privat24
     attr_accessor :currency
     # REQUIRED Description to be displayed to the user
     attr_accessor :description
-    # RECOMMENDED Arbitrary but unique ID (May be REQUIRED by LiqPay configuration)
+    # RECOMMENDED Arbitrary but unique ID (May be REQUIRED by Privat24 configuration)
     attr_accessor :order_id
     # RECOMMENDED URL that the user will be redirected to after payment
     attr_accessor :result_url

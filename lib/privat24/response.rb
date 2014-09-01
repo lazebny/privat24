@@ -1,7 +1,7 @@
 require 'base64'
-require 'private24/base_operation'
+require 'privat24/base_operation'
 
-module Private24
+module Privat24
   class Response < BaseOperation
     SUCCESS_STATUSES = %w(success wait_secure)
 
