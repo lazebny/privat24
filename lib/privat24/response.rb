@@ -19,7 +19,7 @@ module Privat24
     #   success
     #   wait_secure - success, but the card wasn't known to the system 
     attr_reader :status
-    # Private24's internal transaction ID
+    # Privat24's internal transaction ID
     attr_reader :transaction_id
     # Payer's phone
     attr_reader :sender_phone
@@ -47,7 +47,7 @@ module Privat24
   private
     def decode!
       if signature != @request_signature
-        raise Private24::InvalidResponse
+        raise Privat24::InvalidResponse
       end
     end
   end
