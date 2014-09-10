@@ -15,9 +15,9 @@ module Privat24
     # Currency of payment. MUST match the requested currency
     attr_reader :currency
     # Status of payment. One of '
-    #   failure 
+    #   failure
     #   success
-    #   wait_secure - success, but the card wasn't known to the system 
+    #   wait_secure - success, but the card wasn't known to the system
     attr_reader :status
     # Privat24's internal transaction ID
     attr_reader :transaction_id

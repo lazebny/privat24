@@ -3,13 +3,14 @@ require 'base64'
 
 module Privat24
   class BaseOperation
-    attr_accessor :public_key, :private_key
+    attr_accessor :merchant, :password
 
     def initialize(options={})
       options.replace(Privat24.default_options.merge(options))
 
-      @public_key = options[:public_key]
-      @private_key = options[:private_key]
+      @merchant = options[:merchant]
+      @password = options[:password]
+	  @ccy = options[:ccy]
     end
 
     def signature
@@ -17,12 +18,17 @@ module Privat24
     end
 
     def signature_fields
-      # raise NotImplementedError
+      raise NotImplementedError
+    end
+
+    def pay_way
+      'privat24'
     end
 
   private
     def sign(fields)
-      Base64.encode64(Digest::SHA1.digest(@private_key + fields.join(''))).strip
+      _sign = Digest::SHA1.hexdigest(Digest::MD5.hexdigest(fields.join('&') + @password))
+      _sign
     end
   end
 end

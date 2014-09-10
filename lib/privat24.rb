@@ -5,7 +5,7 @@ require 'privat24/response'
 require 'privat24/railtie' if defined?(Rails)
 
 module Privat24
-  PRIVAT24_URL = 'https://api.privatbank.ua/p24api/ishop'
+  PRIVAT24_URL = 'https://api.privatbank.ua:9083/p24api/ishop'
   SUPPORTED_CURRENCIES = %w(UAH USD EUR RUB)
 
   @default_options = {}
