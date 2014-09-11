@@ -6,11 +6,11 @@ module Privat24
     attr_accessor :merchant, :password
 
     def initialize(options={})
-      options.replace(Privat24.default_options.merge(options))
+      options.select!{ |key, val| val }
+      options.replace Privat24.default_options.merge(options)
 
       @merchant = options[:merchant]
       @password = options[:password]
-	  @ccy = options[:ccy]
     end
 
     def signature
