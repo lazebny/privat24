@@ -21,7 +21,7 @@ module Privat24
       super(options)
 
       @amt = options[:amt]
-      @ccy = options[:ccy] || default_options[:ccy]
+      @ccy = options[:ccy] #|| default_options[:ccy]
       @details = options[:details]
       @ext_details = options[:ext_details]
       @order = options[:order]
