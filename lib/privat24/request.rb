@@ -30,26 +30,6 @@ module Privat24
       @kamikaze = options[:kamikaze]
     end
 
-    def signature_fields
-      # {
-      #   amt: amt,
-      #   ccy: ccy,
-      #   details: details,
-      #   ext_details: details,
-      #   pay_way: pay_way,
-      #   order: order,
-      #   merchant: merchant
-      # }
-      [
-        'amt=' + amt.to_s,
-        'ccy=' + ccy.to_s,
-        'details=' + details,
-        'ext_details=' + details,
-        'pay_way=' + pay_way,
-        'order=' + order,
-        'merchant=' + merchant,
-      ]
-    end
 
     def form_fields
       validate! unless @kamikaze

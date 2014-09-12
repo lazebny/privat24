@@ -18,7 +18,15 @@ module Privat24
     end
 
     def signature_fields
-      raise NotImplementedError
+      [
+        'amt=' + amt.to_f.to_s,
+        'ccy=' + ccy.to_s,
+        'details=' + details,
+        'ext_details=' + details,
+        'pay_way=' + pay_way,
+        'order=' + order,
+        'merchant=' + merchant,
+      ]
     end
 
     def pay_way

@@ -3,45 +3,38 @@ require 'privat24/base_operation'
 
 module Privat24
   class Response < BaseOperation
-    SUCCESS_STATUSES = %w(success wait_secure)
+    SUCCESS_STATUSES = %w(ok wait test)
 
-    ATTRIBUTES = %w(public_key order_id amount currency description type status transaction_id sender_phone)
-    %w(public_key order_id description type).each do |attr|
-      attr_reader attr
-    end
+    ATTRIBUTES = %w(
+      amt
+      ccy
+      details
+      ext_details
+      pay_way
+      order
+      merchant
+      state
+      date
+      ref
+    )
 
-    # Amount of payment. MUST match the requested amount
-    attr_reader :amount
-    # Currency of payment. MUST match the requested currency
-    attr_reader :currency
-    # Status of payment. One of '
-    #   failure
-    #   success
-    #   wait_secure - success, but the card wasn't known to the system
-    attr_reader :status
-    # Privat24's internal transaction ID
-    attr_reader :transaction_id
-    # Payer's phone
-    attr_reader :sender_phone
+    ATTRIBUTES.each { |attr| attr_reader attr }
 
-    def initialize(params = {}, options = {})
+
+    def initialize(options = {})
       super(options)
 
       ATTRIBUTES.each do |attribute|
-        instance_variable_set "@#{attribute}", params[attribute]
+        instance_variable_set "@#{attribute}", options['payment'][attribute]
       end
-      @request_signature = params["signature"]
+      @request_signature = options['signature']
 
       decode!
     end
 
     # Returns true, if the transaction was successful
     def success?
-      SUCCESS_STATUSES.include? self.status
-    end
-
-    def signature_fields
-      [amount, currency, public_key, order_id, type, description, status, transaction_id, sender_phone]
+      SUCCESS_STATUSES.include? self.state
     end
 
   private
