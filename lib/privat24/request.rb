@@ -43,7 +43,7 @@ module Privat24
           order: order,
           return_url: return_url,
           server_url: server_url,
-          signature: signature,
+          # signature: signature,
           pay_way: pay_way,
         }.reject{|k,v| v.nil?}
       fields
