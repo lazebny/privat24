@@ -5,12 +5,13 @@ module Privat24
   class Response < BaseOperation
     SUCCESS_STATUSES = %w(ok wait test)
 
-    attr_reader :payment
+    attr_reader :payment, :state
 
     def initialize(options = {})
       super(options)
 
       @payment = options['payment']
+      @state = Hash[URI::decode_www_form(@payment)]['state']
       @request_signature = options['signature']
 
       decode!
