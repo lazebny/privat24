@@ -12,7 +12,8 @@ module Privat24
     def privat24_button(privat24_request, options={}, &block)
       id = options.fetch(:id, 'privat24_form')
       title = options.fetch(:title, 'Pay with Privat24')
-      content_tag(:form, id: id, action: ::Privat24::PRIVAT24_URL, method: :post) do
+      content_tag(:form, id: id, action: ::Privat24::PRIVAT24_URL, method: :post,
+                 'accept-charset' => 'utf-8') do
         result = privat24_request.form_fields.map{|name, value|
           hidden_field_tag(name, value)
         }.join("\n").html_safe

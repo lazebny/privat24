@@ -15,22 +15,11 @@ module Privat24
 
     def signature
       @signature ||= sign(signature_fields)
+      @signature
     end
 
     def signature_fields
-      [
-        'amt=' + amt.to_f.to_s,
-        'ccy=' + ccy.to_s,
-        'details=' + details,
-        'ext_details=' + details,
-        'pay_way=' + pay_way,
-        'order=' + order,
-        'merchant=' + merchant,
-      ]
-    end
-
-    def pay_way
-      'privat24'
+      raise 'Implement this method'
     end
 
   private

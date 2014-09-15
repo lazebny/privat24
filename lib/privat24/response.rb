@@ -5,31 +5,19 @@ module Privat24
   class Response < BaseOperation
     SUCCESS_STATUSES = %w(ok wait test)
 
-    ATTRIBUTES = %w(
-      amt
-      ccy
-      details
-      ext_details
-      pay_way
-      order
-      merchant
-      state
-      date
-      ref
-    )
-
-    ATTRIBUTES.each { |attr| attr_reader attr }
-
+    attr_reader :payment
 
     def initialize(options = {})
       super(options)
 
-      ATTRIBUTES.each do |attribute|
-        instance_variable_set "@#{attribute}", options['payment'][attribute]
-      end
+      @payment = options['payment']
       @request_signature = options['signature']
 
       decode!
+    end
+
+    def signature_fields
+      [@payment]
     end
 
     # Returns true, if the transaction was successful
@@ -39,6 +27,8 @@ module Privat24
 
   private
     def decode!
+      # p 'signature=' + signature
+      # p 'request_signature=' + @request_signature
       if signature != @request_signature
         raise Privat24::InvalidResponse
       end

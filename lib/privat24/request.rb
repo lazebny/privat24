@@ -44,12 +44,30 @@ module Privat24
           return_url: return_url,
           server_url: server_url,
           # signature: signature,
-          pay_way: pay_way,
-        }.reject{|k,v| v.nil?}
+          pay_way: pay_way
+        }.select{ |k,v| v }
+      p fields
       fields
     end
 
   private
+
+    def pay_way
+      'privat24'
+    end
+
+    def signature_fields
+      fields_ = [
+        'amt=' + amt.to_s,
+        'ccy=' + ccy.to_s,
+        'details=' + details,
+        'ext_details=' + details,
+        'pay_way=' + pay_way,
+        'order=' + order,
+        'merchant=' + merchant,
+      ]
+      fields_
+    end
 
     def validate!
       %w(merchant password amt ccy details).each do |required_field|
